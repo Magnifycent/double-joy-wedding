@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title description">
+  <title id="title">Joy and Ayoola wedding invitation</title>
+  <desc id="description">Wedding invitation for Joy Oyiza Josiah and Ayoola Peter Olayinka, Saturday 12 December 2026 in Okene, Kogi State.</desc>
+  <rect width="1200" height="1600" fill="#164c3a"/>
+  <rect x="34" y="34" width="1132" height="1532" fill="none" stroke="#dfc782" stroke-width="2"/>
+  <rect x="52" y="52" width="1096" height="1496" fill="none" stroke="#dfc782" stroke-opacity=".45" stroke-width="1"/>
+  <g fill="none" stroke="#dfc782" stroke-width="2" opacity=".8">
+    <path d="M78 180h115M1007 180h115M78 1420h115M1007 1420h115"/>
+    <circle cx="600" cy="180" r="5" fill="#dfc782"/>
+    <circle cx="600" cy="1420" r="5" fill="#dfc782"/>
+  </g>
+  <g text-anchor="middle" fill="#fffdf8">
+    <text x="600" y="245" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="7" fill="#dfc782">TOGETHER WITH THEIR FAMILIES</text>
+    <text x="600" y="405" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="400">Joy Oyiza Josiah</text>
+    <text x="600" y="500" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-style="italic" fill="#dfc782">and</text>
+    <text x="600" y="600" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="400">Ayoola Peter Olayinka</text>
+    <path d="M440 665h320" stroke="#dfc782" stroke-width="2"/>
+    <text x="600" y="735" font-family="Arial, Helvetica, sans-serif" font-size="19" letter-spacing="5" fill="#dfc782">REQUEST THE PLEASURE OF YOUR COMPANY</text>
+    <text x="600" y="790" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-style="italic">as they celebrate their wedding</text>
+    <text x="600" y="885" font-family="Arial, Helvetica, sans-serif" font-size="21" letter-spacing="4" fill="#dfc782">SATURDAY · 12 DECEMBER 2026</text>
+    <text x="600" y="940" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="3">OKENE, KOGI STATE</text>
+    <path d="M250 1000h700" stroke="#dfc782" stroke-opacity=".65" stroke-width="1"/>
+    <text x="600" y="1060" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="5" fill="#dfc782">CHURCH WEDDING</text>
+    <text x="600" y="1110" font-family="Georgia, 'Times New Roman', serif" font-size="31">8:00 AM</text>
+    <text x="600" y="1155" font-family="Georgia, 'Times New Roman', serif" font-size="25">Deeper Life Bible Church HQ</text>
+    <text x="600" y="1195" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#f7f3e8">Obehira Road · Okene · Kogi State</text>
+    <path d="M250 1240h700" stroke="#dfc782" stroke-opacity=".65" stroke-width="1"/>
+    <text x="600" y="1300" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="5" fill="#dfc782">RECEPTION</text>
+    <text x="600" y="1350" font-family="Georgia, 'Times New Roman', serif" font-size="28">Zigi’s Event Center</text>
+    <text x="600" y="1390" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#f7f3e8">Opposite Afims Hotel · Obehira Road · Okene</text>
+    <text x="600" y="1480" font-family="Arial, Helvetica, sans-serif" font-size="16" letter-spacing="5" fill="#dfc782">JOY &amp; AYOOLA</text>
+  </g>
+</svg>
