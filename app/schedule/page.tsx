@@ -8,7 +8,7 @@ export default function SchedulePage() {
     <main className="min-h-screen bg-white text-[#176044]">
       <SiteHeader />
       <SiteHero
-        image="/images/hero3.png"
+        image="/images/hero4.png"
         imageAlt="Joy and Ayoola together in formal wedding attire"
       />
       <section className="bg-[#ffffff] px-6 py-20">

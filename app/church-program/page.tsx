@@ -7,7 +7,7 @@ export default function ChurchProgramPage() {
     <main className="min-h-screen bg-[#ffffff] text-[#176044]">
       <SiteHeader />
       <SiteHero
-        image="/images/hero4.png"
+        image="/images/hero1.png"
         imageAlt="Joy and Ayoola together in their wedding attire"
       />
       <section className="px-6 py-20 md:py-28">

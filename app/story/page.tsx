@@ -8,8 +8,8 @@ export default function StoryPage() {
       <SiteHeader />
       <SiteHero
         compact
-        image="/images/hero2.png"
-        imageAlt="Joy and Ayoola seated together in their wedding attire"
+        image="/images/hero6.jpeg"
+        imageAlt="Joy and Ayoola standing together in blue formal outfits"
       />
       <section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-2xl text-center">

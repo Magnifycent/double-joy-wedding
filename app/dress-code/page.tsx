@@ -14,8 +14,8 @@ export default function DressCodePage() {
     <main className="min-h-screen bg-[#ffffff] text-[#176044]">
       <SiteHeader />
       <SiteHero
-        image="/images/hero6.jpeg"
-        imageAlt="Joy and Ayoola standing together in their blue wedding outfits"
+        image="/images/hero7.png"
+        imageAlt="Joy and Ayoola together in formal wedding attire"
       />
       <section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-4xl text-center">

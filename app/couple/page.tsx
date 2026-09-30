@@ -20,7 +20,10 @@ export default function CouplePage() {
   return (
     <main className="min-h-screen bg-white text-[#176044]">
       <SiteHeader />
-      <SiteHero compact />
+      <SiteHero
+        image="/images/hero5.png"
+        imageAlt="Joy and Ayoola together in their wedding attire"
+      />
       <section className="px-6 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
           <header className="mx-auto mb-16 max-w-2xl text-center">

@@ -19,7 +19,7 @@ export default function SquadPage() {
     <main className="min-h-screen bg-[#ffffff] text-[#176044]">
       <SiteHeader />
       <SiteHero
-        image="/images/hero5.png"
+        image="/images/hero2.png"
         imageAlt="Joy and Ayoola together outdoors"
       />
       <section className="px-6 py-20 md:py-28">

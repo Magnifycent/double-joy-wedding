@@ -7,7 +7,7 @@ export default function Home() {
     <main className="bg-[#ffffff] text-[#176044]">
       <SiteHeader />
       <SiteHero
-        image="/images/hero1.png"
+        image="/images/hero3.png"
         imageAlt="Joy and Ayoola standing together in their wedding attire"
       />
       <SiteFooter />
