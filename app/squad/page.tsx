@@ -12,6 +12,8 @@ const bridesmaidPhotos = [
 const groomsmanPhotos = [
   { name: "Gbolahan John Olayinka", image: "/images/Gbolahan%20John%20Olayinka.jpg" },
   { name: "Samuel Ayobami Olayinka", image: "/images/Samuel%20Ayobami%20Olayinka.jpeg" },
+  { name: "Mr. Ayooluwa Adebisi", image: "/images/Mr.%20Ayooluwa%20Adebisi.jpeg" },
+  { name: "Orkeghen Franklyn Fanen", image: "/images/ORKEGHEN%20FRANKLYN%20FANEN.jpeg" },
 ];
 
 export default function SquadPage() {
