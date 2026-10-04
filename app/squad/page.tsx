@@ -5,15 +5,19 @@ import SiteHero from "../components/SiteHero";
 
 const numbers = Array.from({ length: 10 }, (_, index) => String(index + 1).padStart(2, "0"));
 const bridesmaidPhotos = [
-  { name: "Faith Danladi", image: "/images/Faith%20Danladi.png" },
-  { name: "Gloria Ozoza", image: "/images/Gloria%20Ozoza.png" },
-  { name: "Shehu Favour", image: "/images/Shehu%20Favour.png" },
+  { name: "FAITH DANLADI", image: "/images/Faith%20Danladi.png" },
+  { name: "GLORIA OZOZA", image: "/images/Gloria%20Ozoza.png" },
+  { name: "SHEHU FAVOUR", image: "/images/Shehu%20Favour.png" },
+  { name: "EMMANUEL FAVOUR", image: "/images/Emmanuel%20Favour.jpeg" },
 ];
 const groomsmanPhotos = [
-  { name: "Gbolahan John Olayinka", image: "/images/Gbolahan%20John%20Olayinka.jpg" },
-  { name: "Samuel Ayobami Olayinka", image: "/images/Samuel%20Ayobami%20Olayinka.jpeg" },
-  { name: "Mr. Ayooluwa Adebisi", image: "/images/Mr.%20Ayooluwa%20Adebisi.jpeg" },
-  { name: "Orkeghen Franklyn Fanen", image: "/images/ORKEGHEN%20FRANKLYN%20FANEN.jpeg" },
+  { name: "GBOLAHAN JOHN OLAYINKA", image: "/images/Gbolahan%20John%20Olayinka.jpg" },
+  { name: "SAMUEL AYOBAMI OLAYINKA", image: "/images/Samuel%20Ayobami%20Olayinka.jpeg" },
+  { name: "MR. AYOOLUWA ADEBISI", image: "/images/Mr.%20Ayooluwa%20Adebisi.jpeg" },
+  { name: "ORKEGHEN FRANKLYN FANEN", image: "/images/Orkeghen%20Franklyn%20Fanen.jpeg" },
+  { name: "OLUWAPELUMI ISAAC OLAYINKA", image: "/images/Oluwapelumi%20Isaac%20Olayinka.jpeg" },
+  { name: "VICTOR AYODELE OTUN", image: "/images/Victor%20Ayodele%20Otun.jpeg" },
+  { name: "GIDEON AMOTO JOSIAH", image: "/images/GIDEON%20AMOTO%20JOSIAH.jpeg" },
 ];
 
 export default function SquadPage() {
@@ -34,7 +38,7 @@ export default function SquadPage() {
           </header>
           <div className="grid gap-16 md:grid-cols-2 md:gap-14">
             <SquadGroup title="Bride’s Side" honorRole="Maid of Honor" memberRole="Bridesmaid" memberLabel="Bridesmaids" photos={bridesmaidPhotos} />
-            <SquadGroup title="Groom’s Side" honorRole="Best Man" memberRole="Groomsman" memberLabel="Groomsmen" photos={groomsmanPhotos} />
+            <SquadGroup title="Groom’s Side" honorRole="Best Man" honorName="OLADAYO SUNDAY OLAYINKA" honorImage="/images/Oladayo%20Sunday%20Olayinka.jpeg" memberRole="Groomsman" memberLabel="Groomsmen" photos={groomsmanPhotos} />
           </div>
         </div>
       </section>
@@ -43,7 +47,7 @@ export default function SquadPage() {
   );
 }
 
-function SquadGroup({ title, honorRole, memberRole, memberLabel, photos }: { title: string; honorRole: string; memberRole: string; memberLabel: string; photos: { name: string; image: string }[] }) {
+function SquadGroup({ title, honorRole, honorName, honorImage, memberRole, memberLabel, photos }: { title: string; honorRole: string; honorName?: string; honorImage?: string; memberRole: string; memberLabel: string; photos: { name: string; image: string }[] }) {
   return (
     <section aria-label={title}>
       <div className="mb-5 border-b border-[#176044]/15 pb-4">
@@ -51,7 +55,7 @@ function SquadGroup({ title, honorRole, memberRole, memberLabel, photos }: { tit
         <span className="mt-2 block text-[10px] uppercase tracking-[0.2em] text-[#b28a3e]">Wedding Party</span>
       </div>
       <h3 className="mb-4 text-[10px] uppercase tracking-[0.2em] text-[#806a3a]">{honorRole}</h3>
-      <div className="max-w-[11rem]"><Portrait role={honorRole} number="" /></div>
+      <div className="max-w-[11rem]"><Portrait role={honorRole} number="" name={honorName} image={honorImage} /></div>
       <h3 className="mb-4 mt-9 text-[10px] uppercase tracking-[0.2em] text-[#806a3a]">{memberLabel}</h3>
       <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3">
         {numbers.map((number, index) => {

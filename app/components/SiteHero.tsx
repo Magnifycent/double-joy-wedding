@@ -17,7 +17,7 @@ export default function SiteHero({
   return (
     <section
       aria-labelledby="wedding-hero-title"
-      className={`relative flex overflow-hidden px-6 text-center ${hasImage ? "min-h-[calc(100svh-5rem)] items-end justify-center bg-black pb-1 pt-10 text-white md:pb-10" : `items-center justify-center bg-white py-14 text-[#176044] ${compact ? "min-h-[24rem] md:min-h-[30rem]" : "min-h-[calc(100svh-5rem)] py-16"}`}`}
+      className={`relative flex overflow-hidden px-6 text-center ${hasImage ? "h-[72svh] min-h-[24rem] max-h-[48rem] items-end justify-center bg-black pb-1 pt-10 text-white md:pb-10" : `items-center justify-center bg-white py-14 text-[#176044] ${compact ? "min-h-[24rem] md:min-h-[30rem]" : "min-h-[calc(100svh-5rem)] py-16"}`}`}
     >
       {image && (
         <>
