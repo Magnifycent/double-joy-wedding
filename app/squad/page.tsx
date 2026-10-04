@@ -14,7 +14,7 @@ const groomsmanPhotos = [
   { name: "GBOLAHAN JOHN OLAYINKA", image: "/images/Gbolahan%20John%20Olayinka.jpg" },
   { name: "SAMUEL AYOBAMI OLAYINKA", image: "/images/Samuel%20Ayobami%20Olayinka.jpeg" },
   { name: "MR. AYOOLUWA ADEBISI", image: "/images/Mr.%20Ayooluwa%20Adebisi.jpeg" },
-  { name: "ORKEGHEN FRANKLYN FANEN", image: "/images/Orkeghen%20Franklyn%20Fanen.jpeg" },
+  { name: "ORKEGHEN FRANKLYN FANEN", image: "/images/ORKEGHEN%20FRANKLYN%20FANEN.jpeg" },
   { name: "OLUWAPELUMI ISAAC OLAYINKA", image: "/images/Oluwapelumi%20Isaac%20Olayinka.jpeg" },
   { name: "VICTOR AYODELE OTUN", image: "/images/Victor%20Ayodele%20Otun.jpeg" },
   { name: "GIDEON AMOTO JOSIAH", image: "/images/GIDEON%20AMOTO%20JOSIAH.jpeg" },
