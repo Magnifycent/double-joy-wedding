@@ -14,13 +14,13 @@ export default function DressCodePage() {
     <main className="min-h-screen bg-[#ffffff] text-[#176044]">
       <SiteHeader />
       <SiteHero
-        image="/images/hero7.png"
+        image="/images/hero7.jpeg"
         imageAlt="Joy and Ayoola together in formal wedding attire"
       />
       <section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">Dress Code</p>
-          <h1 className="font-serif text-4xl md:text-5xl">Come dressed in our colours</h1>
+          <h1 className="font-display text-4xl md:text-5xl">Come dressed in our colours</h1>
           <p className="mx-auto mt-5 max-w-xl leading-7 text-[#49564e]">
             We invite our guests to celebrate with us in oxblood, gold, emerald green and white.
           </p>

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 const weddingDate = new Date("2026-12-12T08:00:00+01:00").getTime();
 
+type TimeLeft = { days: number; hours: number; minutes: number; seconds: number };
+
 function getTimeLeft() {
   const difference = weddingDate - Date.now();
   if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -16,22 +18,26 @@ function getTimeLeft() {
 }
 
 export default function Countdown() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setTimeLeft(getTimeLeft()));
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
-    return () => clearInterval(timer);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      clearInterval(timer);
+    };
   }, []);
   const items = [
-    { value: timeLeft.days, label: "Days" },
-    { value: timeLeft.hours, label: "Hours" },
-    { value: timeLeft.minutes, label: "Minutes" },
-    { value: timeLeft.seconds, label: "Seconds" },
+    { value: timeLeft?.days, label: "Days" },
+    { value: timeLeft?.hours, label: "Hours" },
+    { value: timeLeft?.minutes, label: "Minutes" },
+    { value: timeLeft?.seconds, label: "Seconds" },
   ];
   return (
     <div className="grid grid-cols-4 gap-3 sm:gap-6">
       {items.map((item) => (
         <div key={item.label} className="text-center">
-          <p className="font-serif text-3xl text-[#176044] sm:text-4xl md:text-5xl">{String(item.value).padStart(2, "0")}</p>
+          <p className="font-serif text-3xl text-[#176044] sm:text-4xl md:text-5xl">{item.value === undefined ? "--" : String(item.value).padStart(2, "0")}</p>
           <p className="mt-2 text-[9px] uppercase tracking-[0.2em] text-[#806a3a]">{item.label}</p>
         </div>
       ))}

@@ -34,7 +34,7 @@ export default function SquadPage() {
         <div className="mx-auto max-w-5xl">
           <header className="mx-auto mb-16 max-w-2xl text-center">
             <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">Standing with us</p>
-            <h1 className="font-serif text-4xl md:text-5xl">The Squad</h1>
+            <h1 className="font-display text-4xl md:text-5xl">The Squad</h1>
             <div className="mx-auto my-7 h-px w-10 bg-[#b28a3e]" />
             <p className="leading-7 text-[#49564e]">Our closest friends standing beside us as we celebrate this day.</p>
           </header>
@@ -53,7 +53,7 @@ function SquadGroup({ title, honorRole, honorName, honorImage, memberRole, membe
   return (
     <section aria-label={title}>
       <div className="mb-5 border-b border-[#176044]/15 pb-4">
-        <h2 className="font-serif text-3xl">{title}</h2>
+        <h2 className="font-display text-3xl">{title}</h2>
         <span className="mt-2 block text-[10px] uppercase tracking-[0.2em] text-[#b28a3e]">Wedding Party</span>
       </div>
       <h3 className="mb-4 text-[10px] uppercase tracking-[0.2em] text-[#806a3a]">{honorRole}</h3>

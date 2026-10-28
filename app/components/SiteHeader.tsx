@@ -11,6 +11,7 @@ const links = [
   { href: "/squad", label: "The Squad" },
   { href: "/families", label: "Our Families" },
   { href: "/invitation", label: "Invitation" },
+  { href: "/rsvp", label: "RSVP" },
 ];
 
 const navLinkClass =

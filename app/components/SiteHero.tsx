@@ -41,7 +41,7 @@ export default function SiteHero({
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className={`font-serif font-medium leading-none ${hasImage ? "text-4xl text-white sm:text-6xl md:text-6xl lg:text-8xl" : `text-[#70263a] ${compact ? "text-5xl sm:text-6xl md:text-7xl" : "text-6xl sm:text-7xl md:text-8xl"}`}`}
+          className={`font-display font-medium leading-none ${hasImage ? "text-4xl text-white sm:text-6xl md:text-6xl lg:text-8xl" : `text-[#70263a] ${compact ? "text-5xl sm:text-6xl md:text-7xl" : "text-6xl sm:text-7xl md:text-8xl"}`}`}
         >
           Double Joy
         </motion.h1>

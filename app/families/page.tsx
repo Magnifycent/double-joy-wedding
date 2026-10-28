@@ -16,7 +16,7 @@ export default function FamiliesPage() {
         <div className="mx-auto max-w-5xl">
           <header className="mx-auto mb-14 max-w-2xl text-center">
             <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">With love and gratitude</p>
-            <h1 className="font-serif text-4xl md:text-5xl">Our Families</h1>
+            <h1 className="font-display text-4xl md:text-5xl">Our Families</h1>
           </header>
           <div className="grid gap-12 md:grid-cols-2 md:gap-16">
             {families.map((family) => (

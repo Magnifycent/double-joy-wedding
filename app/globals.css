@@ -17,10 +17,18 @@ body {
   margin: 0;
   background: var(--white);
   color: var(--text);
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-display), var(--font-body), Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.65;
 }
 
 h1, h2 { color: var(--oxblood); }
+
+:where(nav, footer, button, input, select, textarea, summary, label, dt, [class*="uppercase"]) {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 400;
+}
 
 ::selection {
   background: var(--oxblood);
@@ -32,3 +40,5 @@ h1, h2 { color: var(--oxblood); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; }
 
 .font-serif { font-family: var(--font-display), Georgia, serif; }
+
+.font-display { font-family: var(--font-accent), var(--font-display), Georgia, serif; }

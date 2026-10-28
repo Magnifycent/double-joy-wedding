@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Lora, Rye } from "next/font/google";
+import RsvpPrompt from "./components/RsvpPrompt";
 import "./globals.css";
 
-const displayFont = Playfair_Display({
+const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["400", "500", "600", "700"],
 });
 
-const bodyFont = DM_Sans({
+const bodyFont = Lora({
   subsets: ["latin"],
   variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
+});
+
+const accentFont = Rye({
+  subsets: ["latin"],
+  variable: "--font-accent",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -30,8 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable}`}>
+      <body>
+        {children}
+        <RsvpPrompt />
+      </body>
     </html>
   );
 }

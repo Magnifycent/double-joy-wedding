@@ -14,7 +14,7 @@ export default function ChurchProgramPage() {
         <div className="mx-auto max-w-5xl">
           <header className="mx-auto mb-12 max-w-2xl text-center">
             <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">Church Wedding</p>
-            <h1 className="font-serif text-4xl md:text-5xl">Order of Service</h1>
+            <h1 className="font-display text-4xl md:text-5xl">Order of Service</h1>
             <div className="mx-auto my-7 h-px w-10 bg-[#b28a3e]" />
             <p className="leading-7 text-[#49564e]">
               The church program will be shared here when it is available.
@@ -29,7 +29,7 @@ export default function ChurchProgramPage() {
               <div className="max-w-sm text-center">
                 <span aria-hidden="true" className="mx-auto mb-5 block h-px w-12 bg-[#b28a3e]" />
                 <p className="text-[10px] uppercase tracking-[0.2em] text-[#806a3a]">Church program image</p>
-                <p className="mt-3 font-serif text-2xl">Order of Service</p>
+                <p className="mt-3 font-display text-2xl">Order of Service</p>
                 <p className="mt-4 text-sm leading-6 text-[#49564e]">The church’s program image will appear in this frame.</p>
               </div>
             </div>
