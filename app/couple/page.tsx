@@ -114,6 +114,7 @@ export default function CouplePage() {
                 title="Parents of the Bride"
                 names="Pst Matthew Josiah & Mrs Christianah Josiah"
                 image="/images/bride-family.jpeg"
+                fit="contain"
               />
               <FamilyGroup
                 title="Parents of the Groom"
@@ -129,11 +130,11 @@ export default function CouplePage() {
   );
 }
 
-function FamilyGroup({ title, names, image }: { title: string; names: string; image: string }) {
+function FamilyGroup({ title, names, image, fit }: { title: string; names: string; image: string; fit?: "cover" | "contain" }) {
   return (
     <figure>
-      <div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden border border-[#176044]/15 bg-[#f8f7f5]">
-        <FamilyPortrait src={image} alt={`${title} family portrait`} />
+      <div className="relative aspect-[5/4] overflow-hidden border border-[#176044]/15 bg-[#f8f7f5]">
+        <FamilyPortrait src={image} alt={`${title} family portrait`} fit={fit} />
       </div>
       <figcaption className="mt-5 border-t border-[#b28a3e]/45 pt-4 text-center">
         <p className="text-[9px] uppercase tracking-[0.2em] text-[#806a3a]">{title}</p>

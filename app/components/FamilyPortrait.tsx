@@ -6,9 +6,11 @@ import { useState } from "react";
 export default function FamilyPortrait({
   src,
   alt,
+  fit = "cover",
 }: {
   src: string;
   alt: string;
+  fit?: "cover" | "contain";
 }) {
   const [imageUnavailable, setImageUnavailable] = useState(false);
 
@@ -25,8 +27,8 @@ export default function FamilyPortrait({
       src={src}
       alt={alt}
       fill
-      sizes="(max-width: 360px) 88vw, 320px"
-      className="object-cover"
+      sizes="(max-width: 768px) 88vw, 42vw"
+      className={fit === "contain" ? "object-contain" : "object-cover"}
       onError={() => setImageUnavailable(true)}
     />
   );
