@@ -17,7 +17,7 @@ export default function SchedulePage() {
           <Countdown />
         </div>
       </section>
-      <section className="px-6 py-20 md:py-28">
+      <section id="page-content" className="scroll-mt-24 px-6 py-20 md:py-28">
         <div className="mx-auto max-w-5xl">
           <div className="mb-14 text-center">
             <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">The Wedding</p>

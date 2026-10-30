@@ -17,7 +17,7 @@ export default function DressCodePage() {
         image="/images/hero7.jpeg"
         imageAlt="Joy and Ayoola together in formal wedding attire"
       />
-      <section className="px-6 py-24 md:py-32">
+      <section id="page-content" className="scroll-mt-24 px-6 py-24 md:py-32">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">Dress Code</p>
           <h1 className="font-display text-4xl md:text-5xl">Come dressed in our colours</h1>

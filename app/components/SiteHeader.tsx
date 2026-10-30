@@ -3,15 +3,15 @@ import Link from "next/link";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/story", label: "Our Story" },
-  { href: "/couple", label: "Meet the Couple" },
-  { href: "/schedule", label: "Schedule" },
-  { href: "/dress-code", label: "Dress Code" },
-  { href: "/church-program", label: "Church Program" },
-  { href: "/squad", label: "The Squad" },
+  { href: "/story#page-content", label: "Our Story" },
+  { href: "/couple#page-content", label: "Meet the Couple" },
+  { href: "/schedule#page-content", label: "Schedule" },
+  { href: "/dress-code#page-content", label: "Dress Code" },
+  { href: "/church-program#page-content", label: "Church Program" },
+  { href: "/squad#page-content", label: "The Squad" },
   { href: "/couple#families", label: "Our Families" },
-  { href: "/invitation", label: "Invitation" },
-  { href: "/rsvp", label: "RSVP" },
+  { href: "/invitation#page-content", label: "Invitation" },
+  { href: "/rsvp#page-content", label: "RSVP" },
 ];
 
 const navLinkClass =

@@ -21,6 +21,7 @@ function doPost(event) {
     const email = cleanText_(submitted.email, 254);
     const phone = cleanText_(submitted.phone, 40);
     const location = cleanText_(submitted.location, 160);
+    const arrivalDate = cleanText_(submitted.arrivalDate, 10);
     const attendance = submitted.attendance === "Accepts" ? "Accepts" :
       submitted.attendance === "Declines" ? "Declines" : "";
     const note = cleanText_(submitted.note, 1000);
@@ -30,7 +31,8 @@ function doPost(event) {
         (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) ||
         !Number.isInteger(partySize) || partySize < 0 || partySize > 10 ||
         (attendance === "Accepts" && partySize < 1) ||
-        (attendance === "Declines" && partySize !== 0)) {
+        (attendance === "Accepts" && !isValidDate_(arrivalDate)) ||
+        (attendance === "Declines" && (partySize !== 0 || arrivalDate))) {
       return json_({ ok: false, error: "Invalid RSVP" });
     }
 
@@ -44,26 +46,38 @@ function doPost(event) {
       let sheet = spreadsheet.getSheetByName("RSVP");
       if (!sheet) sheet = spreadsheet.insertSheet("RSVP");
       if (sheet.getLastRow() === 0) {
-        sheet.getRange(1, 1, 1, 8).setValues([[
-          "Submitted at", "Name", "Email", "Phone", "Response", "Party size", "Note", "Location",
+        sheet.getRange(1, 1, 1, 9).setValues([[
+          "Submitted at", "Name", "Email", "Phone", "Response", "Party size", "Note", "Location", "Arrival date",
         ]]);
         sheet.setFrozenRows(1);
       } else {
         const headerWidth = Math.max(sheet.getLastColumn(), 1);
-        const headers = sheet.getRange(1, 1, 1, headerWidth).getValues()[0];
-        if (!headers.includes("Location")) sheet.getRange(1, headerWidth + 1).setValue("Location");
+        let headers = sheet.getRange(1, 1, 1, headerWidth).getValues()[0];
+        if (!headers.includes("Location")) {
+          sheet.getRange(1, sheet.getLastColumn() + 1).setValue("Location");
+          headers = headers.concat(["Location"]);
+        }
+        if (!headers.includes("Arrival date")) {
+          sheet.getRange(1, sheet.getLastColumn() + 1).setValue("Arrival date");
+          headers = headers.concat(["Arrival date"]);
+        }
       }
 
-      sheet.appendRow([
-        new Date(),
-        safeCell_(name),
-        safeCell_(email),
-        safeCell_(phone),
-        attendance,
-        partySize,
-        safeCell_(note),
-        safeCell_(location),
-      ]);
+      const rowByHeader = {
+        "Submitted at": new Date(),
+        Name: safeCell_(name),
+        Email: safeCell_(email),
+        Phone: safeCell_(phone),
+        Response: attendance,
+        "Party size": partySize,
+        Note: safeCell_(note),
+        Location: safeCell_(location),
+        "Arrival date": arrivalDate,
+      };
+      const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      sheet.appendRow(headers.map(function (header) {
+        return Object.prototype.hasOwnProperty.call(rowByHeader, header) ? rowByHeader[header] : "";
+      }));
     } finally {
       lock.releaseLock();
     }
@@ -88,6 +102,12 @@ function doPost(event) {
 function cleanText_(value, maximumLength) {
   if (typeof value !== "string") return "";
   return value.trim().slice(0, maximumLength);
+}
+
+function isValidDate_(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(value + "T00:00:00.000Z");
+  return !isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
 }
 
 function safeCell_(value) {

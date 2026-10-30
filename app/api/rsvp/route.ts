@@ -7,6 +7,7 @@ type RsvpPayload = {
   email?: unknown;
   phone?: unknown;
   location?: unknown;
+  arrivalDate?: unknown;
   attendance?: unknown;
   partySize?: unknown;
   note?: unknown;
@@ -45,6 +46,7 @@ export async function POST(request: Request) {
   const email = asText(body.email).toLowerCase();
   const phone = asText(body.phone);
   const location = asText(body.location);
+  const arrivalDate = asText(body.arrivalDate);
   const attendance = asText(body.attendance);
   const note = asText(body.note);
   const partySizeValue = asText(body.partySize);
@@ -63,6 +65,9 @@ export async function POST(request: Request) {
   }
   if (attendance !== "yes" && attendance !== "no") {
     return errorResponse("Please choose an attendance response.", 400);
+  }
+  if (attendance === "yes" && !isValidDate(arrivalDate)) {
+    return errorResponse("Please enter your expected arrival date.", 400);
   }
   if (note.length > 1000) {
     return errorResponse("Please shorten your note to 1,000 characters or fewer.", 400);
@@ -94,6 +99,7 @@ export async function POST(request: Request) {
         email,
         phone,
         location,
+        arrivalDate,
         attendance: attendance === "yes" ? "Accepts" : "Declines",
         partySize,
         note,
@@ -112,4 +118,10 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ ok: true, emailConfirmationSent }, { headers: { "Cache-Control": "no-store" } });
+}
+
+function isValidDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
 }

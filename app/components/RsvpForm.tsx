@@ -10,7 +10,9 @@ const calendarDetails =
 const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Joy & Ayoola's Wedding Celebration")}&dates=20261212/20261213&details=${encodeURIComponent(calendarDetails)}&location=${encodeURIComponent("Okene, Kogi State, Nigeria")}`;
 
 const inputClass =
-  "mt-2 w-full border-b border-[#176044]/35 bg-transparent px-0 py-3 text-sm text-[#263b31] outline-none transition placeholder:text-[#7b857f] focus:border-[#b28a3e] focus:ring-0";
+  "mt-2 w-full border-b border-[#176044]/55 bg-transparent px-0 py-3 text-base text-[#263b31] outline-none transition placeholder:text-[#68756c] focus:border-[#b28a3e] focus:ring-0";
+const fieldLabelClass = "block text-xs font-semibold uppercase tracking-[0.12em] text-[#263b31]";
+const optionalLabelClass = "normal-case font-normal tracking-normal text-[#49564e]";
 
 export default function RsvpForm() {
   const [state, setState] = useState<FormState>("idle");
@@ -31,6 +33,7 @@ export default function RsvpForm() {
       email: String(formData.get("email") ?? ""),
       phone: String(formData.get("phone") ?? ""),
       location: String(formData.get("location") ?? ""),
+      arrivalDate: String(formData.get("arrivalDate") ?? ""),
       attendance: String(formData.get("attendance") ?? "yes"),
       partySize: String(formData.get("partySize") ?? "1"),
       note: String(formData.get("note") ?? ""),
@@ -63,7 +66,7 @@ export default function RsvpForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-8" noValidate>
       <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
-        <label className="block text-[9px] uppercase tracking-[0.18em] text-[#176044] sm:col-span-2">
+        <label className={`${fieldLabelClass} sm:col-span-2`}>
           Full name <span aria-hidden="true" className="text-[#70263a]">*</span>
           <input
             className={inputClass}
@@ -75,8 +78,8 @@ export default function RsvpForm() {
             placeholder="Your name"
           />
         </label>
-        <label className="block text-[9px] uppercase tracking-[0.18em] text-[#176044]">
-          Email address <span className="normal-case tracking-normal text-[#68756c]">(optional, for confirmation)</span>
+        <label className={fieldLabelClass}>
+          Email address <span className={optionalLabelClass}>(optional, for confirmation)</span>
           <input
             className={inputClass}
             type="email"
@@ -86,7 +89,7 @@ export default function RsvpForm() {
             placeholder="you@example.com"
           />
         </label>
-        <label className="block text-[9px] uppercase tracking-[0.18em] text-[#176044]">
+        <label className={fieldLabelClass}>
           Phone number
           <input
             className={inputClass}
@@ -98,10 +101,10 @@ export default function RsvpForm() {
           />
         </label>
       </div>
-      <p className="-mt-5 text-xs leading-5 text-[#68756c]">Please provide an email address or phone number. If you include an email, we’ll send a confirmation.</p>
+      <p className="-mt-5 text-sm leading-6 text-[#49564e]">Please provide an email address or phone number. If you include an email, we’ll send a confirmation.</p>
 
-      <label className="block text-[9px] uppercase tracking-[0.18em] text-[#176044]">
-        Where are you travelling from? <span className="normal-case tracking-normal text-[#68756c]">(optional)</span>
+      <label className={fieldLabelClass}>
+        Where are you travelling from? <span className={optionalLabelClass}>(optional)</span>
         <input
           className={inputClass}
           type="text"
@@ -113,7 +116,7 @@ export default function RsvpForm() {
       </label>
 
       <fieldset>
-        <legend className="text-[9px] uppercase tracking-[0.18em] text-[#176044]">Will you be attending?</legend>
+        <legend className={fieldLabelClass}>Will you be attending?</legend>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <AttendanceOption
             value="yes"
@@ -134,18 +137,25 @@ export default function RsvpForm() {
       </fieldset>
 
       {attendance === "yes" && (
-        <label className="block max-w-xs text-[9px] uppercase tracking-[0.18em] text-[#176044]">
-          Number attending, including you
-          <select className={inputClass} name="partySize" defaultValue="1">
-            {Array.from({ length: 10 }, (_, index) => index + 1).map((count) => (
-              <option key={count} value={count}>{count}</option>
-            ))}
-          </select>
-        </label>
+        <div className="grid gap-7 sm:grid-cols-2 sm:gap-8">
+          <label className={`${fieldLabelClass} max-w-xs`}>
+            Number attending, including you
+            <select className={inputClass} name="partySize" defaultValue="1">
+              {Array.from({ length: 10 }, (_, index) => index + 1).map((count) => (
+                <option key={count} value={count}>{count}</option>
+              ))}
+            </select>
+          </label>
+          <label className={fieldLabelClass}>
+            Expected arrival date <span aria-hidden="true" className="text-[#70263a]">*</span>
+            <input className={inputClass} type="date" name="arrivalDate" required />
+            <span className="mt-2 block text-sm font-normal normal-case tracking-normal text-[#49564e]">Let us know which date you expect to arrive.</span>
+          </label>
+        </div>
       )}
 
-      <label className="block text-[9px] uppercase tracking-[0.18em] text-[#176044]">
-        A note for the couple <span className="normal-case tracking-normal text-[#68756c]">(optional)</span>
+      <label className={fieldLabelClass}>
+        A note for the couple <span className={optionalLabelClass}>(optional)</span>
         <textarea
           className={`${inputClass} min-h-24 resize-y`}
           name="note"
@@ -166,13 +176,13 @@ export default function RsvpForm() {
         <button
           type="submit"
           disabled={state === "sending"}
-          className="min-w-44 border border-[#70263a] bg-[#70263a] px-7 py-4 text-[9px] uppercase tracking-[0.2em] text-white transition hover:border-[#176044] hover:bg-[#176044] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e] disabled:cursor-wait disabled:opacity-60"
+          className="min-w-44 border border-[#70263a] bg-[#70263a] px-7 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:border-[#176044] hover:bg-[#176044] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e] disabled:cursor-wait disabled:opacity-60"
         >
           {state === "sending" ? "Sending…" : "Send our reply"}
         </button>
         {state === "error" && <p aria-live="assertive" role="alert" className="text-sm leading-6 text-[#70263a]">{message}</p>}
       </div>
-      <p className="text-[10px] leading-5 text-[#68756c]">Your details will be used only to organize the wedding and follow up about your reply.</p>
+      <p className="text-sm leading-6 text-[#49564e]">Your details will be used only to organize the wedding and follow up about your reply.</p>
 
       {state === "success" && (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-[#17241d]/55 px-5 py-8" role="presentation">
@@ -195,28 +205,28 @@ export default function RsvpForm() {
               Thank you for replying
             </h2>
             <span aria-hidden="true" className="mx-auto my-6 block h-px w-12 bg-[#b28a3e]" />
-            <p className="text-sm leading-7 text-[#49564e]">
+            <p className="text-base leading-7 text-[#38463d]">
               {submittedAttendance === "yes"
                 ? "Your joyful acceptance has been received. We look forward to celebrating with you."
                 : "Your reply has been received. Thank you for letting us know."}
             </p>
-            {emailStatus === "sent" && <p className="mt-4 text-sm leading-6 text-[#176044]">A confirmation email is on its way, with a calendar file attached.</p>}
-            {emailStatus === "failed" && <p className="mt-4 text-sm leading-6 text-[#70263a]">Your reply is saved, but we couldn’t send the confirmation email. Please check your address or contact us for help.</p>}
-            {emailStatus === "not-provided" && <p className="mt-4 text-sm leading-6 text-[#68756c]">Add an email address next time if you’d like a confirmation email.</p>}
+            {emailStatus === "sent" && <p className="mt-4 text-base leading-7 text-[#176044]">A confirmation email is on its way, with a calendar file attached.</p>}
+            {emailStatus === "failed" && <p className="mt-4 text-base leading-7 text-[#70263a]">Your reply is saved, but we couldn’t send the confirmation email. Please check your address or contact us for help.</p>}
+            {emailStatus === "not-provided" && <p className="mt-4 text-base leading-7 text-[#49564e]">Add an email address next time if you’d like a confirmation email.</p>}
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               {submittedAttendance === "yes" && (
                 <a
                   href={calendarUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-[#176044] px-6 py-3.5 text-[9px] uppercase tracking-[0.16em] text-[#176044] transition hover:bg-[#176044] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e]"
+                  className="border border-[#176044] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#176044] transition hover:bg-[#176044] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e]"
                 >
                   Add to Google Calendar
                 </a>
               )}
               <Link
                 href="/"
-                className="border border-[#70263a] bg-[#70263a] px-6 py-3.5 text-[9px] uppercase tracking-[0.16em] text-white transition hover:border-[#176044] hover:bg-[#176044] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e]"
+                className="border border-[#70263a] bg-[#70263a] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition hover:border-[#176044] hover:bg-[#176044] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e]"
               >
                 Return to Home
               </Link>
@@ -253,7 +263,7 @@ function AttendanceOption({
       />
       <span>
         <span className="block font-serif text-xl text-[#70263a]">{title}</span>
-        <span className="mt-1 block text-xs leading-5 text-[#68756c]">{description}</span>
+        <span className="mt-1 block text-sm leading-6 text-[#49564e]">{description}</span>
       </span>
     </label>
   );

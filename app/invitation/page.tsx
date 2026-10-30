@@ -10,7 +10,7 @@ export default function InvitationPage() {
     <main className="min-h-screen bg-white text-[#176044]">
       <SiteHeader />
       <SiteHero compact />
-      <section className="px-6 py-20 text-center md:py-28">
+      <section id="page-content" className="scroll-mt-24 px-6 py-20 text-center md:py-28">
         <div className="mx-auto max-w-xl">
           <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#176044]">You are invited</p>
           <h1 className="font-display text-4xl md:text-5xl">We would love to celebrate with you.</h1>

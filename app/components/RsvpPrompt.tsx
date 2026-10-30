@@ -70,7 +70,7 @@ export default function RsvpPrompt() {
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
-            href="/rsvp"
+            href="/rsvp#page-content"
             onClick={closePrompt}
             className="inline-flex min-h-11 min-w-40 items-center justify-center border border-[#70263a] bg-[#70263a] px-6 py-3 text-[9px] uppercase tracking-[0.2em] text-white transition hover:border-[#176044] hover:bg-[#176044] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e]"
           >

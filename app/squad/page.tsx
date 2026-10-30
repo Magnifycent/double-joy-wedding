@@ -3,7 +3,7 @@ import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import SiteHero from "../components/SiteHero";
 
-const numbers = Array.from({ length: 10 }, (_, index) => String(index + 1).padStart(2, "0"));
+const numbers = Array.from({ length: 9 }, (_, index) => String(index + 1).padStart(2, "0"));
 const bridesmaidPhotos = [
   { name: "FAITH DANLADI", image: "/images/Faith%20Danladi.png" },
   { name: "GLORIA OZOZA", image: "/images/Gloria%20Ozoza.png" },
@@ -20,6 +20,8 @@ const groomsmanPhotos = [
   { name: "OLUWAPELUMI ISAAC OLAYINKA", image: "/images/Oluwapelumi%20Isaac%20Olayinka.jpeg" },
   { name: "VICTOR AYODELE OTUN", image: "/images/Victor%20Ayodele%20Otun.jpeg" },
   { name: "GIDEON AMOTO JOSIAH", image: "/images/GIDEON%20AMOTO%20JOSIAH.jpeg" },
+  { name: "DR BLESSING UKORO (SIR B)", image: "/images/Dr%20Blessing%20Ukoro%20%28SirB%29.jpeg" },
+  { name: "OYEKOLA TAIYE JOHN", image: "/images/OYEKOLA%20TAIYE%20JOHN.jpeg" },
 ];
 
 export default function SquadPage() {
@@ -30,7 +32,7 @@ export default function SquadPage() {
         image="/images/hero2.png"
         imageAlt="Joy and Ayoola together outdoors"
       />
-      <section className="px-6 py-20 md:py-28">
+      <section id="page-content" className="scroll-mt-24 px-6 py-20 md:py-28">
         <div className="mx-auto max-w-5xl">
           <header className="mx-auto mb-16 max-w-2xl text-center">
             <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">Standing with us</p>

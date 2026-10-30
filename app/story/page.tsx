@@ -57,7 +57,7 @@ export default function StoryPage() {
         image="/images/hero6.jpeg"
         imageAlt="Joy and Ayoola standing together in blue formal outfits"
       />
-      <section className="px-6 py-20 md:py-28">
+      <section id="page-content" className="scroll-mt-24 px-6 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
           <header className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
             <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">Our Story</p>

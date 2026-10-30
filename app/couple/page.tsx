@@ -42,7 +42,7 @@ export default function CouplePage() {
         image="/images/hero5.png"
         imageAlt="Joy and Ayoola together in their wedding attire"
       />
-      <section className="px-6 py-20 md:py-28">
+      <section id="page-content" className="scroll-mt-24 px-6 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
           <header className="mx-auto mb-20 max-w-2xl text-center md:mb-24">
             <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#b28a3e]">
@@ -112,9 +112,8 @@ export default function CouplePage() {
             <div className="grid gap-12 md:grid-cols-2 md:gap-16">
               <FamilyGroup
                 title="Parents of the Bride"
-                names="Pst Matthew Josiah & Mrs Christainah Josiah"
+                names="Pst Matthew Josiah & Mrs Christianah Josiah"
                 image="/images/bride-family.jpeg"
-                fit="contain"
               />
               <FamilyGroup
                 title="Parents of the Groom"
@@ -130,11 +129,11 @@ export default function CouplePage() {
   );
 }
 
-function FamilyGroup({ title, names, image, fit }: { title: string; names: string; image: string; fit?: "cover" | "contain" }) {
+function FamilyGroup({ title, names, image }: { title: string; names: string; image: string }) {
   return (
     <figure>
-      <div className="relative aspect-[5/4] overflow-hidden border border-[#176044]/15 bg-[#f8f7f5]">
-        <FamilyPortrait src={image} alt={`${title} family portrait`} fit={fit} />
+      <div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden border border-[#176044]/15 bg-[#f8f7f5]">
+        <FamilyPortrait src={image} alt={`${title} family portrait`} />
       </div>
       <figcaption className="mt-5 border-t border-[#b28a3e]/45 pt-4 text-center">
         <p className="text-[9px] uppercase tracking-[0.2em] text-[#806a3a]">{title}</p>
