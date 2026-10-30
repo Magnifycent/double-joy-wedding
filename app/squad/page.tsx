@@ -16,7 +16,7 @@ const groomsmanPhotos = [
   { name: "GBOLAHAN JOHN OLAYINKA", image: "/images/Gbolahan%20John%20Olayinka.jpg" },
   { name: "SAMUEL AYOBAMI OLAYINKA", image: "/images/Samuel%20Ayobami%20Olayinka.jpeg" },
   { name: "MR. AYOOLUWA ADEBISI", image: "/images/Mr.%20Ayooluwa%20Adebisi.jpeg" },
-  { name: "ORKEGHEN FRANKLYN FANEN", image: "/images/Orkeghen%20Franklyn%20Fanen.jpeg" },
+  { name: "ORKEGHEN FRANKLYN FANEN", image: "/images/ORKEGHEN%20FRANKLYN%20FANEN.jpeg" },
   { name: "OLUWAPELUMI ISAAC OLAYINKA", image: "/images/Oluwapelumi%20Isaac%20Olayinka.jpeg" },
   { name: "VICTOR AYODELE OTUN", image: "/images/Victor%20Ayodele%20Otun.jpeg" },
   { name: "GIDEON AMOTO JOSIAH", image: "/images/GIDEON%20AMOTO%20JOSIAH.jpeg" },
@@ -60,7 +60,8 @@ function SquadGroup({ title, honorRole, honorName, honorImage, memberRole, membe
       <div className="max-w-44"><Portrait role={honorRole} number="" name={honorName} image={honorImage} /></div>
       <h3 className="mb-4 mt-9 text-[10px] uppercase tracking-[0.2em] text-[#806a3a]">{memberLabel}</h3>
       <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3">
-        {numbers.map((number, index) => {
+        {Array.from({ length: memberRole === "Bridesmaid" ? photos.length : numbers.length }, (_, index) => {
+          const number = numbers[index];
           const person = photos[index];
           return <Portrait key={number} role={memberRole} number={number} name={person?.name} image={person?.image} />;
         })}

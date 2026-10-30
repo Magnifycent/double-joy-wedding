@@ -6,6 +6,7 @@ type RsvpPayload = {
   name?: unknown;
   email?: unknown;
   phone?: unknown;
+  location?: unknown;
   attendance?: unknown;
   partySize?: unknown;
   note?: unknown;
@@ -22,6 +23,8 @@ function errorResponse(error: string, status: number) {
 
 export async function POST(request: Request) {
   let payload: unknown;
+
+  let emailConfirmationSent = false;
 
   try {
     payload = await request.json();
@@ -41,6 +44,7 @@ export async function POST(request: Request) {
   const name = asText(body.name);
   const email = asText(body.email).toLowerCase();
   const phone = asText(body.phone);
+  const location = asText(body.location);
   const attendance = asText(body.attendance);
   const note = asText(body.note);
   const partySizeValue = asText(body.partySize);
@@ -53,6 +57,9 @@ export async function POST(request: Request) {
   }
   if (phone.length > 40 || (!email && !phone)) {
     return errorResponse("Please provide an email address or phone number.", 400);
+  }
+  if (location.length > 160) {
+    return errorResponse("Please shorten your location to 160 characters or fewer.", 400);
   }
   if (attendance !== "yes" && attendance !== "no") {
     return errorResponse("Please choose an attendance response.", 400);
@@ -86,6 +93,7 @@ export async function POST(request: Request) {
         name,
         email,
         phone,
+        location,
         attendance: attendance === "yes" ? "Accepts" : "Declines",
         partySize,
         note,
@@ -93,14 +101,15 @@ export async function POST(request: Request) {
       cache: "no-store",
       signal: AbortSignal.timeout(20_000),
     });
-    const result = (await response.json()) as { ok?: boolean };
+    const result = (await response.json()) as { ok?: boolean; emailConfirmationSent?: boolean };
 
     if (!response.ok || !result.ok) {
       return errorResponse("We couldn’t save your reply just now. Please try again in a moment.", 502);
     }
+    emailConfirmationSent = result.emailConfirmationSent === true;
   } catch {
     return errorResponse("We couldn’t connect to the RSVP sheet just now. Please try again in a moment.", 502);
   }
 
-  return NextResponse.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
+  return NextResponse.json({ ok: true, emailConfirmationSent }, { headers: { "Cache-Control": "no-store" } });
 }

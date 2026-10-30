@@ -1,8 +1,13 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 
 type FormState = "idle" | "sending" | "success" | "error";
+
+const calendarDetails =
+  "Church Wedding: 9:00 AM at Deeper Life Bible Church Regional Headquarters, Obehira Road, Okene, Kogi State. Reception: 12:00 Noon at Zigi's Event Center, Opp. Afims Hotels, Obehira Road, Okene.";
+const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Joy & Ayoola's Wedding Celebration")}&dates=20261212/20261213&details=${encodeURIComponent(calendarDetails)}&location=${encodeURIComponent("Okene, Kogi State, Nigeria")}`;
 
 const inputClass =
   "mt-2 w-full border-b border-[#176044]/35 bg-transparent px-0 py-3 text-sm text-[#263b31] outline-none transition placeholder:text-[#7b857f] focus:border-[#b28a3e] focus:ring-0";
@@ -11,6 +16,8 @@ export default function RsvpForm() {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
   const [attendance, setAttendance] = useState<"yes" | "no">("yes");
+  const [submittedAttendance, setSubmittedAttendance] = useState<"yes" | "no">("yes");
+  const [emailStatus, setEmailStatus] = useState<"sent" | "failed" | "not-provided">("not-provided");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,6 +30,7 @@ export default function RsvpForm() {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       phone: String(formData.get("phone") ?? ""),
+      location: String(formData.get("location") ?? ""),
       attendance: String(formData.get("attendance") ?? "yes"),
       partySize: String(formData.get("partySize") ?? "1"),
       note: String(formData.get("note") ?? ""),
@@ -35,14 +43,15 @@ export default function RsvpForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as { ok?: boolean; error?: string };
+      const result = (await response.json()) as { ok?: boolean; error?: string; emailConfirmationSent?: boolean };
 
       if (!response.ok || !result.ok) {
         throw new Error(result.error || "We couldn’t save your reply. Please try again.");
       }
 
       setState("success");
-      setMessage("Thank you. Your reply has been received.");
+      setSubmittedAttendance(payload.attendance === "no" ? "no" : "yes");
+      setEmailStatus(payload.email ? (result.emailConfirmationSent ? "sent" : "failed") : "not-provided");
       form.reset();
       setAttendance("yes");
     } catch (error) {
@@ -67,7 +76,7 @@ export default function RsvpForm() {
           />
         </label>
         <label className="block text-[9px] uppercase tracking-[0.18em] text-[#176044]">
-          Email address
+          Email address <span className="normal-case tracking-normal text-[#68756c]">(optional, for confirmation)</span>
           <input
             className={inputClass}
             type="email"
@@ -89,7 +98,19 @@ export default function RsvpForm() {
           />
         </label>
       </div>
-      <p className="-mt-5 text-xs leading-5 text-[#68756c]">Please provide an email address or phone number so we can follow up if needed.</p>
+      <p className="-mt-5 text-xs leading-5 text-[#68756c]">Please provide an email address or phone number. If you include an email, we’ll send a confirmation.</p>
+
+      <label className="block text-[9px] uppercase tracking-[0.18em] text-[#176044]">
+        Where are you travelling from? <span className="normal-case tracking-normal text-[#68756c]">(optional)</span>
+        <input
+          className={inputClass}
+          type="text"
+          name="location"
+          autoComplete="address-level2"
+          maxLength={160}
+          placeholder="City, state or country"
+        />
+      </label>
 
       <fieldset>
         <legend className="text-[9px] uppercase tracking-[0.18em] text-[#176044]">Will you be attending?</legend>
@@ -149,11 +170,60 @@ export default function RsvpForm() {
         >
           {state === "sending" ? "Sending…" : "Send our reply"}
         </button>
-        <p aria-live="polite" role={state === "error" ? "alert" : "status"} className={`text-sm leading-6 ${state === "error" ? "text-[#70263a]" : "text-[#176044]"}`}>
-          {message}
-        </p>
+        {state === "error" && <p aria-live="assertive" role="alert" className="text-sm leading-6 text-[#70263a]">{message}</p>}
       </div>
       <p className="text-[10px] leading-5 text-[#68756c]">Your details will be used only to organize the wedding and follow up about your reply.</p>
+
+      {state === "success" && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-[#17241d]/55 px-5 py-8" role="presentation">
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rsvp-success-title"
+            className="relative w-full max-w-lg border border-[#b28a3e]/70 bg-white px-7 py-10 text-center shadow-2xl sm:px-12 sm:py-14"
+          >
+            <button
+              type="button"
+              aria-label="Close confirmation"
+              onClick={() => setState("idle")}
+              className="absolute right-4 top-4 grid size-10 place-items-center text-2xl leading-none text-[#176044] transition hover:text-[#70263a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b28a3e]"
+            >
+              ×
+            </button>
+            <p className="text-[10px] uppercase tracking-[0.28em] text-[#b28a3e]">With gratitude</p>
+            <h2 id="rsvp-success-title" tabIndex={-1} autoFocus className="mt-4 font-display text-4xl text-[#70263a] sm:text-5xl">
+              Thank you for replying
+            </h2>
+            <span aria-hidden="true" className="mx-auto my-6 block h-px w-12 bg-[#b28a3e]" />
+            <p className="text-sm leading-7 text-[#49564e]">
+              {submittedAttendance === "yes"
+                ? "Your joyful acceptance has been received. We look forward to celebrating with you."
+                : "Your reply has been received. Thank you for letting us know."}
+            </p>
+            {emailStatus === "sent" && <p className="mt-4 text-sm leading-6 text-[#176044]">A confirmation email is on its way, with a calendar file attached.</p>}
+            {emailStatus === "failed" && <p className="mt-4 text-sm leading-6 text-[#70263a]">Your reply is saved, but we couldn’t send the confirmation email. Please check your address or contact us for help.</p>}
+            {emailStatus === "not-provided" && <p className="mt-4 text-sm leading-6 text-[#68756c]">Add an email address next time if you’d like a confirmation email.</p>}
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              {submittedAttendance === "yes" && (
+                <a
+                  href={calendarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-[#176044] px-6 py-3.5 text-[9px] uppercase tracking-[0.16em] text-[#176044] transition hover:bg-[#176044] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e]"
+                >
+                  Add to Google Calendar
+                </a>
+              )}
+              <Link
+                href="/"
+                className="border border-[#70263a] bg-[#70263a] px-6 py-3.5 text-[9px] uppercase tracking-[0.16em] text-white transition hover:border-[#176044] hover:bg-[#176044] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b28a3e]"
+              >
+                Return to Home
+              </Link>
+            </div>
+          </section>
+        </div>
+      )}
     </form>
   );
 }
