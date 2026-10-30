@@ -9,7 +9,7 @@ const links = [
   { href: "/dress-code#page-content", label: "Dress Code" },
   { href: "/church-program#page-content", label: "Church Program" },
   { href: "/squad#page-content", label: "The Squad" },
-  { href: "/couple#families", label: "Our Families" },
+  { href: "/families#page-content", label: "Our Families" },
   { href: "/invitation#page-content", label: "Invitation" },
   { href: "/rsvp#page-content", label: "RSVP" },
 ];
