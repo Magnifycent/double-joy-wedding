@@ -7,7 +7,7 @@ const numbers = Array.from({ length: 9 }, (_, index) => String(index + 1).padSta
 const bridesmaidPhotos = [
   { name: "FAITH DANLADI", image: "/images/Faith%20Danladi.png" },
   { name: "GLORIA OZOZA", image: "/images/Gloria%20Ozoza.png" },
-  { name: "SHEHU FAVOUR", image: "/images/Shehu%20Favour.png" },
+  { name: "HASSAN FAVOUR", image: "/images/Shehu%20Favour.png" },
   { name: "EMMANUEL FAVOUR", image: "/images/Emmanuel%20Favour.jpeg" },
   { name: "OLUWATOSIN ALAKA", image: "/images/Oluwatosin%20Alaka.jpeg" },
   { name: "ONYANTA", image: "/images/Onyanta.jpeg" },
